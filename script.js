@@ -77,15 +77,14 @@ const showWord = function(word, inputs) {
 };
 
 const guessLetter = function() {
-  if (gameOver) {
-    return;
-  }
   const input1 = document.querySelector("input").value;
-  document.querySelector("input").value = "";
 
-  if (inputs.includes(input1) || input1 === "") {
+  // Stop the game
+  if (gameOver || inputs.includes(input1) || input1 === "") {
     return;
   }
+
+  document.querySelector("input").value = "";
 
   if (!word.includes(input1)) {
     tries++;
@@ -103,7 +102,7 @@ const guessLetter = function() {
   }
 };
 
-const restartGame = function() {
+const restartGame = function(startMeUp) {
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
