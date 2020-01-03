@@ -16,8 +16,9 @@ let word;
 const wordpicker = function(list) {
   let word = "sinaasappel";
   let index = Math.floor(Math.random() * list.length);
+  const x = list;
   console.log("wat ben ik?", word);
-  return list[index];
+  return x[index];
 };
 
 let inputs;
