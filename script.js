@@ -102,7 +102,7 @@ const guessLetter = function() {
   }
 };
 
-const restartGame = function(startMeUp) {
+const beginAgain = function(startMeUp) {
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
@@ -120,6 +120,6 @@ const restartGame = function(startMeUp) {
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
-  document.querySelector(".restart").addEventListener("click", restartGame);
-  restartGame();
+  document.querySelector(".restart").addEventListener("click", beginAgain);
+  beginAgain();
 });
