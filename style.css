@@ -1,0 +1,12 @@
+.win,
+.lose {
+  display: none;
+}
+
+.win h2 {
+  color: red;
+}
+
+.lose h2 {
+  color: blue;
+}
