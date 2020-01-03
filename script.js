@@ -52,7 +52,7 @@ const spanTheWord1 = function(word) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
 };
 
-let tries;
+let tries = 0;
 const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
 };
@@ -77,14 +77,15 @@ const showWord = function(word, inputs) {
 };
 
 const guessLetter = function() {
-  const input1 = document.querySelector("input").value;
-
-  // Stop the game
-  if (gameOver || inputs.includes(input1) || input1 === "") {
+  if (gameOver) {
     return;
   }
-
+  const input1 = document.querySelector("input").value;
   document.querySelector("input").value = "";
+
+  if (inputs.includes(input1) || input1 === "") {
+    return;
+  }
 
   if (!word.includes(input1)) {
     tries++;
@@ -102,7 +103,7 @@ const guessLetter = function() {
   }
 };
 
-const beginAgain = function(startMeUp) {
+const beginTheGameWithPlayer = function() {
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
@@ -120,6 +121,8 @@ const beginAgain = function(startMeUp) {
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
-  document.querySelector(".restart").addEventListener("click", beginAgain);
-  beginAgain();
+  document
+    .querySelector(".restart")
+    .addEventListener("click", beginTheGameWithPlayer);
+  beginTheGameWithPlayer();
 });
