@@ -103,7 +103,7 @@ const guessLetter = function() {
   }
 };
 
-const beginTheGameWithPlayer = function() {
+const beginTheGameWithPlayer = function(player1) {
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
