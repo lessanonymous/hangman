@@ -33,7 +33,7 @@ const wordGuessed = function(word, inputs) {
   return remaining.length === 0;
 };
 
-const inputClearer = function() {
+const clean = function() {
   document.querySelector("input").value = "";
 };
 
