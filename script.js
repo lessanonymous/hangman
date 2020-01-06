@@ -65,9 +65,9 @@ const lettersInTheRow = function(word, inputs) {
   document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(" ");
 };
 
-const showWord = function(word, inputs) {
+const showWord = function(word, inputLetterWords) {
   let display = word.map(function(letter) {
-    if (inputs.includes(letter)) {
+    if (inputLetterWords.includes(letter)) {
       return letter;
     } else {
       return "_";
@@ -113,10 +113,12 @@ const beginTheGameWithPlayer = function(player1) {
   document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
   word;
 
+  tries = 0;
   document.querySelector(".lives span").innerHTML = 5 - 0;
 
   inputs = [];
   showWord(word, inputs);
+  lettersInTheRow(word, inputs);
 };
 
 document.addEventListener("DOMContentLoaded", function() {
