@@ -103,7 +103,14 @@ const guessLetter = function() {
   }
 };
 
-const beginTheGameWithPlayer = function(player1) {
+function getThePlayer(player) {
+  let play = document.getElementById("player1");
+  play = play + "We are about to start the game";
+  return play;
+}
+
+function beginTheGameWithPlayer(player1) {
+  getThePlayer(player1);
   gameOver = false;
   document.querySelector(".win").style.display = "none";
   document.querySelector(".lose").style.display = "none";
@@ -119,7 +126,7 @@ const beginTheGameWithPlayer = function(player1) {
   inputs = [];
   showWord(word, inputs);
   lettersInTheRow(word, inputs);
-};
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".guess").addEventListener("click", guessLetter);
