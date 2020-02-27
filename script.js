@@ -57,7 +57,7 @@ const updateTriesDisplay = function(tries) {
   document.querySelector(".lives span").innerHTML = 5 - tries;
 };
 
-const lettersInTheRow = function(word, inputs) {
+const letters = function(word, inputs) {
   let wrongLetters = inputs.filter(function(letter) {
     // If the letter is in the word return.... false/true (we want to remove that then)
     return !word.includes(letter);
@@ -94,11 +94,11 @@ const guessLetter = function() {
 
   inputs.push(input1);
   showWord(word, inputs);
-  lettersInTheRow(word, inputs);
+  letters(word, inputs);
 
   if (wordGuessed(word, inputs)) {
     winTheGame();
-  } else if (tries >= maxAmount) {
+  } else if (tries >= 5) {
     lose4();
   }
 };
@@ -125,7 +125,7 @@ function beginTheGameWithPlayer(player1) {
 
   inputs = [];
   showWord(word, inputs);
-  lettersInTheRow(word, inputs);
+  letters(word, inputs);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
