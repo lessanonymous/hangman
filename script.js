@@ -1,5 +1,5 @@
 // Initialize ALL global variables here
-
+// allTheWords = []
 // This code here selects a random word
 const wordList = [
   "vis",
@@ -44,6 +44,7 @@ const winTheGame = function() {
 };
 
 const lose4 = function() {
+  // when losing 3 times, this has to happen
   document.querySelector(".lose").style.display = "block";
   gameOver = true;
 };
@@ -65,7 +66,7 @@ const letters = function(word, inputs) {
   document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(" ");
 };
 
-const showWord = function(word, inputLetterWords) {
+const theWord = function(word, inputLetterWords) {
   let display = word.map(function(letter) {
     if (inputLetterWords.includes(letter)) {
       return letter;
@@ -93,7 +94,7 @@ const guessLetter = function() {
   }
 
   inputs.push(input1);
-  showWord(word, inputs);
+  theWord(word, inputs);
   letters(word, inputs);
 
   if (wordGuessed(word, inputs)) {
@@ -124,7 +125,7 @@ function beginTheGameWithPlayer(player1) {
   document.querySelector(".lives span").innerHTML = 5 - 0;
 
   inputs = [];
-  showWord(word, inputs);
+  theWord(word, inputs);
   letters(word, inputs);
 }
 
