@@ -9,115 +9,93 @@ const hangMan = {
     "geeuw",
   ],
   maxAmount: 5,
-  word: "",
-  inputs: [],
+  word: [],
+  guesses: [],
   gameOver: false,
   tries: 0,
-  wordpicker(list) {
-    this.word = "sinaasappel";
-    let index = Math.floor(Math.random() * list.length);
-    const x = list;
-    console.log("wat ben ik?", this.word);
-    return x[index];
+  test: false,
+  pickRandomWordFromWordList() {
+    const randomIndex = Math.floor(Math.random() * this.wordList.length);
+    return this.wordList[randomIndex];
   },
-  wordGuessed(word, inputs) {
-    // remove all letters from word that are already guessed
-    // We can do this with a for loop to.
-    let remaining = word.filter(function (letter) {
-      // If the letter is guessed return true (we want to remove that right away)
-      return !inputs.includes(letter);
-    });
-    // If we have letters left, right?
-    return remaining.length === 0;
+  wordHasBeenGuessed() {
+    const remainingLetters = this.word.filter(
+      (letter) => !this.guesses.includes(letter)
+    );
+    return !remainingLetters.length;
   },
-  clean() {
+  setInputFieldToEmptyString() {
     document.querySelector("input").value = "";
   },
   winTheGame() {
     document.querySelector(".win").style.display = "block";
     this.gameOver = true;
   },
-  lose4() {
+  loseTheGame() {
     // when losing 3 times, this has to happen
     document.querySelector(".lose").style.display = "block";
     this.gameOver = true;
   },
-  spanTheWord1(word) {
-    document.querySelector(".lose p span").innerHTML = `"${word.join("")}"`;
+  displayWord() {
+    document.querySelector(".lose p span").innerHTML = `${this.word.join("")}`;
   },
-  updateTriesDisplay(tries) {
-    document.querySelector(".lives span").innerHTML = 5 - tries;
+  displayTries() {
+    document.querySelector(".lives span").innerHTML = 5 - this.tries;
   },
-  letters(word, inputs) {
-    let wrongLetters = inputs.filter(function (letter) {
-      // If the letter is in the word return.... false/true (we want to remove that then)
-      return !word.includes(letter);
-    });
-    document.querySelector(".guessed_letters").innerHTML = wrongLetters.join(
-      " "
+  updateWrongGuesses() {
+    const wrongGuesses = this.guesses.filter(
+      (letter) => !this.word.includes(letter)
     );
+    if (!this.test)
+      document.querySelector(".guessed_letters").innerHTML = wrongGuesses.join(
+        " "
+      );
+    return wrongGuesses;
   },
-  theWord(word, inputLetterWords) {
-    let display = word.map(function (letter) {
-      if (inputLetterWords.includes(letter)) {
-        return letter;
-      } else {
-        return "_";
-      }
-    });
-    document.querySelector(".the_word").innerHTML = display.join(" ");
+  updateTheWord() {
+    const display = this.word.map((letter) =>
+      inputLetterWords.includes(letter) ? letter : "_"
+    );
+    if (!this.test)
+      document.querySelector(".the_word").innerHTML = display.join(" ");
+    return display;
   },
   guessLetter() {
-    if (this.gameOver) {
-      return;
-    }
-    const input1 = document.querySelector("input").value;
-    document.querySelector("input").value = "";
-
-    console.log(this);
-    if (this.inputs.includes(input1) || input1 === "") {
-      return;
-    }
-
-    if (!this.word.includes(input1)) {
+    if (this.gameOver) return false;
+    if (!this.test) this.guess = document.querySelector("input").value;
+    if (!this.test) this.setInputFieldToEmptyString();
+    if (this.guesses.includes(this.guess) || this.guess === "") return false;
+    this.guesses.push(this.guess);
+    if (!this.word.includes(this.guess)) {
       this.tries++;
-      document.querySelector(".lives span").innerHTML = 5 - this.tries;
+      if (!this.test)
+        document.querySelector(".lives span").innerHTML = 5 - this.tries;
+      this.updateWrongGuesses();
+    } else {
+      this.updateTheWord();
     }
-
-    this.inputs.push(input1);
-    this.theWord(this.word, this.inputs);
-    this.letters(this.word, this.inputs);
-
-    if (this.wordGuessed(this.word, this.inputs)) {
+    if (this.wordHasBeenGuessed()) {
       this.winTheGame();
-    } else if (this.tries >= 5) {
-      this.lose4();
+    } else if (this.tries === 5) {
+      this.loseTheGame();
     }
+    return true;
   },
-  getThePlayer(player) {
-    let play = document.getElementById("player1");
-    play = play + "We are about to start the game";
-    return play;
-  },
-  beginTheGameWithPlayer(player1) {
-    this.getThePlayer(player1);
+  start() {
     this.gameOver = false;
     document.querySelector(".win").style.display = "none";
     document.querySelector(".lose").style.display = "none";
     document.querySelector("input").value = "";
 
-    this.word = this.wordpicker(this.wordList).split("");
-    document.querySelector(".lose p span").innerHTML = `"${this.word.join(
-      ""
-    )}"`;
+    this.word = this.pickRandomWordFromWordList().split("");
+    document.querySelector(".lose p span").innerHTML = `${this.word.join("")}`;
 
     this.tries = 0;
     document.querySelector(".lives span").innerHTML = 5;
 
-    this.inputs = [];
-    this.theWord(this.word, this.inputs);
-    this.letters(this.word, this.inputs);
+    this.guesses = [];
+    this.updateTheWord();
+    this.updateWrongGuesses();
   },
 };
-
-export default hangMan;
+module.exports = hangMan;

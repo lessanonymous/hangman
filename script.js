@@ -1,4 +1,4 @@
-import hangMan from "./hangman.js";
+const hangMan = require("./hangman.js");
 
 const handleGuessButtonClickEvent = () => hangMan.guessLetter();
 const handleRestartButtonClickEvent = () => hangMan.beginTheGameWithPlayer();
