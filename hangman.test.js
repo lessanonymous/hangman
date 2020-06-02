@@ -49,9 +49,36 @@ test("should update the wrong guesses", () => {
   expect(hangMan.updateWrongGuesses()).toEqual(["m", "a"]);
 });
 
-// describe("start", () => {
-//   test("All properties should be back to the default value", () => {
-//     hangMan.start();
-//     expect(hangMan.gameOver).toBe(false);
-//   });
-// });
+test("should update the word", () => {
+  expect(hangMan.updateTheWord()).toEqual([
+    "d",
+    "e",
+    "v",
+    "e",
+    "_",
+    "_",
+    "_",
+    "e",
+    "_",
+  ]);
+});
+
+test("should end the game", () => {
+  hangMan.displayWinningMessage();
+  expect(hangMan.gameOver).toBe(true);
+});
+
+test("should end the game", () => {
+  hangMan.gameOver = false;
+  hangMan.displayLosingMessage();
+  expect(hangMan.gameOver).toBe(true);
+});
+
+describe("start", () => {
+  test("All properties should be back to the default value", () => {
+    hangMan.start();
+    expect(hangMan.gameOver).toBe(false);
+    expect(hangMan.tries).toBe(0);
+    expect(hangMan.guesses).toEqual([]);
+  });
+});

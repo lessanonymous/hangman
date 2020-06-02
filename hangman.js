@@ -27,19 +27,18 @@ const hangMan = {
   setInputFieldToEmptyString() {
     document.querySelector("input").value = "";
   },
-  winTheGame() {
-    document.querySelector(".win").style.display = "block";
+  displayWinningMessage() {
+    if (!this.test) document.querySelector(".win").style.display = "block";
     this.gameOver = true;
   },
-  loseTheGame() {
-    // when losing 3 times, this has to happen
-    document.querySelector(".lose").style.display = "block";
+  displayLosingMessage() {
+    if (!this.test) document.querySelector(".lose").style.display = "block";
     this.gameOver = true;
   },
-  displayWord() {
+  addWordtoLoseMessage() {
     document.querySelector(".lose p span").innerHTML = `${this.word.join("")}`;
   },
-  displayTries() {
+  updateTries() {
     document.querySelector(".lives span").innerHTML = 5 - this.tries;
   },
   updateWrongGuesses() {
@@ -75,24 +74,21 @@ const hangMan = {
       this.updateTheWord();
     }
     if (this.wordHasBeenGuessed()) {
-      this.winTheGame();
+      this.displayWinningMessage();
     } else if (this.tries === 5) {
-      this.loseTheGame();
+      this.displayLosingMessage();
     }
     return true;
   },
   start() {
     this.gameOver = false;
-    document.querySelector(".win").style.display = "none";
-    document.querySelector(".lose").style.display = "none";
-    document.querySelector("input").value = "";
-
+    if (!this.test) document.querySelector(".win").style.display = "none";
+    if (!this.test) document.querySelector(".lose").style.display = "none";
+    if (!this.test) document.querySelector("input").value = "";
     this.word = this.pickRandomWordFromWordList().split("");
-    document.querySelector(".lose p span").innerHTML = `${this.word.join("")}`;
-
+    if (!this.test) this.addWordtoLoseMessage();
     this.tries = 0;
-    document.querySelector(".lives span").innerHTML = 5;
-
+    if (!this.test) this.updateTries();
     this.guesses = [];
     this.updateTheWord();
     this.updateWrongGuesses();
