@@ -54,7 +54,7 @@ const hangMan = {
   },
   updateTheWord() {
     const display = this.word.map((letter) =>
-      inputLetterWords.includes(letter) ? letter : "_"
+      this.guesses.includes(letter) ? letter : "_"
     );
     if (!this.test)
       document.querySelector(".the_word").innerHTML = display.join(" ");

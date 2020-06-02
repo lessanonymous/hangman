@@ -1,7 +1,5 @@
-const hangMan = require("./hangman.js");
-
 const handleGuessButtonClickEvent = () => hangMan.guessLetter();
-const handleRestartButtonClickEvent = () => hangMan.beginTheGameWithPlayer();
+const handleRestartButtonClickEvent = () => hangMan.start();
 
 document
   .querySelector(".guess")
@@ -9,4 +7,4 @@ document
 document
   .querySelector(".restart")
   .addEventListener("click", handleRestartButtonClickEvent);
-hangMan.beginTheGameWithPlayer();
+hangMan.start();
