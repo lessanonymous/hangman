@@ -1,12 +1,171 @@
+
+/* Grid and Area's */
+
+.container {
+  height: 100%;
+  width: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 70px 200px auto 250px;
+	grid-gap: 1px;
+	grid-template-areas:
+		"t t t t t"
+		"p g g g w"
+		"p g g g i"
+		"a a a a a";
+}
+
+.titleBox {
+	grid-area: t;
+	background-color: rgb(31, 75, 156);
+  color: white;
+  border-radius: 4px;
+}
+
+.guessBox {
+	grid-area: g;
+	background-color: white;
+	color: black;
+}
+
+.wrongLetterBox {
+	grid-area: w;
+	background-color: orange;
+  color: white;
+  border-radius: 12px;
+}
+
+.livesBox {
+	grid-area: i;
+	background-color: orange;
+  color: white;
+  border-radius: 12px;
+}
+
+.animation {
+	grid-area: a;
+  background-color: whitesmoke;
+  flex-direction: column;
+}
+
+.gallow{
+  grid-area: p;
+}
+/* Main Style Font, place, etc */
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.contentMain {
+	text-align: center;
+	margin-top: 5%;
+}
+
+h3, .lives {
+	margin-left: 5%;
+}
+
+h3{
+  font-size: 1.1em;
+}
+
+input{
+  border-radius: 12px;
+  height: 30px;
+  width: 200px;
+}
+
+button{
+  border-radius: 12px;
+  background-color: rgb(31, 75, 156);
+  color: orange;
+
+}
+
+button:hover {
+  background-color: orange;
+  color: rgb(31, 75, 156);
+}
+
+.img{
+  align-content: center;
+}
+
+.harmed{
+  text-decoration: line-through;
+}
+
+.chosenWordWas{
+  color: orange;
+}
+
+.gifLose, .gifWon{
+  border: rgb(31, 75, 156);
+  border-radius: 4px;
+}
+
+.guessed_letters{
+  text-align: center;
+}
+/* animation */
+
+
+.move1 {
+  display: none;
+  position: absolute;
+  left: 0px;
+	color: orange;
+	font-size: 50px;
+	margin-top: 10%;
+	animation-name: drive;
+	animation-duration: 4s;
+	animation-fill-mode: forwards;
+	animation-delay: 2s;
+  animation-iteration-count: infinite;
+}
+.move2 {
+  display: none;
+  position: absolute;
+  left: 0px;
+	color: red;
+	font-size: 50px;
+	margin-top: 10%;
+	animation-name: drive;
+	animation-duration: 4s;
+	animation-fill-mode: forwards;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes drive {
+	from {
+    transform: translateX(-300px);
+	}
+	to {
+    transform: translateX(1300px);
+	}
+}
+
+
+/* overig */
+
 .win,
 .lose {
-  display: none;
+	display: none;
 }
 
 .win h2 {
-  color: red;
+	color: rgb(31, 75, 156);
 }
 
 .lose h2 {
-  color: blue;
+	color: rgb(31, 75, 156);
 }
+
+
+

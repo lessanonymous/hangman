@@ -9,28 +9,55 @@
     <script defer src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
+
   <body>
-    <h1>Simple 'Hangman' Game</h1>
-    <p>[no people will actually be harmed during this game]</p>
 
-    <div class="win">
-      <h2>You won!</h2>
-      <img src="win.gif" />
+    <div class="container">
+      <div class="titleBox">
+        <h1>Simple 'Hangman' Game <img src="https://s3.amazonaws.com/iconbros/icons/icon_pngs/000/001/955/original/hangman.png?1560586372" height="35" width="35"></h1>
+      </div>
+        
+
+      <div class="guessBox">
+
+        <div class="contentMain">
+          <input type="text" placeholder="Guess a letter" maxlength="1" />
+          <button class="guess">Guess</button>
+          <button class="restart">Restart</button>
+        
+          <h2>Current word:</h2>
+          <div class="the_word">_ _ _ _ _</div>
+          <p class="harmed">[people will actually be harmed during this game]</p>
+        </div>
+      </div>
+
+      <div class="wrongLetterBox">
+        <h3>Incorrectly guessed letters:</h3>
+        <div class="guessed_letters"></div>
+      </div>
+
+      <div class="livesBox">
+        <p class="lives"><strong> You have <span></span> lives remaining</strong></p>
+      </div>
+
+      <div class="gallow">
+        <div class="win">
+          <h2>You won!</h2>
+          <img class='gifWon' src="win.gif" height="100" width="200" />
+        </div>
+
+        <div class="lose">
+          <h2>You lost..</h2>
+          <img class="gifLose" src="lose.gif" height="100" width="200"/>
+          <p class="chosenWordWas"><strong>The chosen word was: </strong><span></span></p>
+        </div>
+      </div>
+
+      <div class="animation">
+        <div class='move1'><strong>YOU WON! :)</strong></div>
+        <div class='move2'><strong>YOU LOST :(</strong></div>
+      </div>
     </div>
-
-    <div class="lose">
-      <h2>You lost..</h2>
-      <img src="lose.gif" />
-      <p>The chosen word was: <span></span></p>
-    </div>
-
-    <input type="text" placeholder="Guess a letter" maxlength="1" />
-    <button class="guess">Guess</button>
-    <button class="restart">Restart</button>
-    <h2>Current word:</h2>
-    <div class="the_word">_ _ _ _ _</div>
-    <h3>Incorrectly guessed letters:</h3>
-    <div class="guessed_letters"></div>
-    <p class="lives">You have <span></span> lives remaining</p>
   </body>
+  
 </html>
