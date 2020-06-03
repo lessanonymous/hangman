@@ -29,12 +29,16 @@ const hangMan = {
   },
   displayWinningMessage() {
     if (!this.test) document.querySelector(".win").style.display = "block";
+    if (!this.test) document.querySelector(".move1").style.display = "block";
     this.gameOver = true;
   },
+  
   displayLosingMessage() {
     if (!this.test) document.querySelector(".lose").style.display = "block";
+    if (!this.test) document.querySelector(".move2").style.display = "block";
     this.gameOver = true;
   },
+
   addWordtoLoseMessage() {
     document.querySelector(".lose p span").innerHTML = `${this.word.join("")}`;
   },
@@ -84,6 +88,8 @@ const hangMan = {
     this.gameOver = false;
     if (!this.test) document.querySelector(".win").style.display = "none";
     if (!this.test) document.querySelector(".lose").style.display = "none";
+    if (!this.test) document.querySelector(".move1").style.display = "none";
+    if (!this.test) document.querySelector(".move2").style.display = "none";
     if (!this.test) document.querySelector("input").value = "";
     this.word = this.pickRandomWordFromWordList().split("");
     if (!this.test) this.addWordtoLoseMessage();
